@@ -1,0 +1,20 @@
+name: main
+on: fork
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8, 10]
+
+    steps:
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: node -v
+    - run: yarn -v
+    - run: yarn
+    - run: yarn bootstrap
